@@ -1,0 +1,22 @@
+{
+	"plantumlVersion": "latest",
+	"projectName": "collie-docs",
+	"homepageName": "Overview",
+	"rootFolder": "src",
+	"distFolder": "docs",
+	"generateMD": false,
+	"generatePDF": false,
+	"generateCompleteMD": true,
+	"generateCompletePDF": false,
+	"generateWEB": false,
+	"webTheme": "//unpkg.com/docsify/lib/themes/vue.css",
+	"repoUrl": "",
+	"webPort": "3000",
+	"pdfCss": "/Users/alejandro.oropeza/.nvm/versions/node/v10.16.3/lib/node_modules/c4builder/pdf.css",
+	"includeBreadcrumbs": true,
+	"includeLinkToDiagram": false,
+	"diagramsOnTop": false,
+	"generateLocalImages": false,
+	"charset": "UTF-8",
+	"hasRun": true
+}
