@@ -1,0 +1,18 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+Container(reactapp, "Web Application", "Delivers the static content and the single page application")
+Container(db, "Database", "No Relational Database Schema(MongoDb)", "Stores movies, theaters, brand information as date, time, name, title, logo and etc...")
+Container_Boundary(api, "API Application") {
+    Component(apollo, "Apollo Server", "GraphQL Server", "Serve content thouugh GraphQL server")
+    Component(resolvers, "Resolvers", "Schema definition", "Define models and make querties to the database to retrieve brand, theaters and movies information")
+    Component(connector, "Uses Cases", "Layer", "Read unified information from the database and retrieve it")
+
+    Rel(apollo, resolvers, "Uses")
+    Rel(resolvers, connector, "Uses")
+}
+Rel(reactapp, apollo, "Uses", "GraphQL/HTTPS")
+Rel(connector, db, "Uses", "Reads & Write")
+@enduml

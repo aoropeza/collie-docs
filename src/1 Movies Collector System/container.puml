@@ -1,0 +1,24 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(user, "User", "Wants to find a good movie and some theater available to see it")
+System_Ext(cinepolis, "Cinepolis", "Provider's web page. Allows to the system scrape information about movies, locations and schedules")
+System_Ext(cinemex, "Cinemex", "Provider's web page. Allows to the system scrape information about movies, locations and schedules")
+System_Boundary(colliesystem, "Movies Collector System / Collie") {
+    Container(reactapp, "Web Application", "Delivers the static content and the single page application")
+    Container(api, "API Application", "Javascript, NodeJS and Apollo Server", "Provides to the main system functionality via a GraphQL API")
+    Container(cli, "CLI Application", "Javascript, NodeJS and Puppeter", "Provides to the main database's system information through scrappe external webpages")
+    Container(db, "Database", "No Relational Database Schema(MongoDb)", "Stores movies, theaters, brand information as date, time, name, title, logo and etc...")
+
+    Rel(reactapp, api, "Uses", "GraphQL/HTTPS")
+    Rel(api, db, "Uses", "Reads & Write")
+    Rel(cli, db, "Uses", "Read & Write")
+    
+    Rel(cli, cinepolis, "Uses", "Scrape HTML Pages")
+    Rel(cli, cinemex, "Uses", "Scrape HTML Pages")
+}
+
+Rel(user, reactapp, "Uses")
+@enduml
