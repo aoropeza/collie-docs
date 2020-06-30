@@ -25,11 +25,6 @@ const repositories = [
     projectName: "collie-cli",
     branch: "develop",
   },
-  {
-    repoUrl: "https://github.com/aoropeza/collie-dsl.git",
-    projectName: "collie-dsl",
-    branch: "master",
-  },
 ];
 
 const pushChangeToRepo = async ({ repoUrl, projectName, branch }) => {
