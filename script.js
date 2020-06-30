@@ -58,7 +58,11 @@ const pushChangeToRepo = async ({ repoUrl, projectName, branch }) => {
       ref: branch,
       onAuth: () => ({ username: process.env.GITHUB_TOKEN }),
     })
-    .catch(() => console.log(`Error pushing ${repoUrl}`));
+    .catch((err) => {
+      console.log(`Error pushing ${repoUrl}`);
+      console.log(`------------`);
+      console.log(err);
+    });
   console.log(pushResult);
 };
 
