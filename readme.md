@@ -16,7 +16,7 @@ Take a look at
 
 - [vscode-plantuml](https://github.com/qjebbs/vscode-plantuml) plugin for visual studio code to view diagrams at design time
 
-Open the terminal and run the following commands to start compiling the documentation
+Open the terminal and run the following commands to start compiling the documentation.
 
 ```bash
 npm i -g c4builder
