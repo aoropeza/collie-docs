@@ -49,14 +49,16 @@ const pushChangeToRepo = async ({ repoUrl, projectName, branch }) => {
     },
     message: "Updated README file",
   });
-  let pushResult = await git.push({
-    fs,
-    http,
-    dir: `.tmp/${projectName}`,
-    remote: "origin",
-    ref: branch,
-    onAuth: () => ({ username: process.env.GITHUB_TOKEN }),
-  });
+  let pushResult = await git
+    .push({
+      fs,
+      http,
+      dir: `.tmp/${projectName}`,
+      remote: "origin",
+      ref: branch,
+      onAuth: () => ({ username: process.env.GITHUB_TOKEN }),
+    })
+    .catch(() => console.log(`Error pushing ${repoUrl}`));
   console.log(pushResult);
 };
 
