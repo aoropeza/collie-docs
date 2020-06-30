@@ -25,6 +25,11 @@ const repositories = [
     projectName: "collie-cli",
     branch: "develop",
   },
+  {
+    repoUrl: "https://github.com/aoropeza/collie-dsl.git",
+    projectName: "collie-dsl",
+    branch: "master",
+  },
 ];
 
 const pushChangeToRepo = async ({ repoUrl, projectName, branch }) => {
@@ -49,20 +54,14 @@ const pushChangeToRepo = async ({ repoUrl, projectName, branch }) => {
     },
     message: "Updated README file",
   });
-  let pushResult = await git
-    .push({
-      fs,
-      http,
-      dir: `.tmp/${projectName}`,
-      remote: "origin",
-      ref: branch,
-      onAuth: () => ({ username: process.env.GITHUB_TOKEN }),
-    })
-    .catch((err) => {
-      console.log(`Error pushing ${repoUrl}`);
-      console.log(`------------`);
-      console.log(err);
-    });
+  let pushResult = await git.push({
+    fs,
+    http,
+    dir: `.tmp/${projectName}`,
+    remote: "origin",
+    ref: branch,
+    onAuth: () => ({ username: process.env.GITHUB_TOKEN }),
+  });
   console.log(pushResult);
 };
 
