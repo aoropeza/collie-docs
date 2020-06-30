@@ -1,0 +1,25 @@
+{
+  "name": "collie-docs",
+  "version": "1.0.0",
+  "description": "This project was created using [c4builder](https://adrianvlupu.github.io/C4-Builder/)",
+  "main": "script.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "pushReadme": "node script.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aoropeza/collie-docs.git"
+  },
+  "author": "Alejandro Oropeza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aoropeza/collie-docs/issues"
+  },
+  "homepage": "https://github.com/aoropeza/collie-docs#readme",
+  "dependencies": {
+    "isomorphic-git": "^1.5.0"
+  }
+}
