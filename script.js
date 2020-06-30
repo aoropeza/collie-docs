@@ -40,7 +40,7 @@ const pushChangeToRepo = async ({ repoUrl, projectName, branch }) => {
       http,
       dir,
       url: repoUrl,
-      onAuth: () => ({ username: "1353500aa8833b744c5c48ada40859d8872977b9" }),
+      onAuth: () => ({ username: process.env.GITHUB_TOKEN }),
     })
     .catch(() => console.log(`Error cloning ${repoUrl}`));
   fs.copyFileSync("docs/collie-docs.md", `.tmp/${projectName}/README.md`);
