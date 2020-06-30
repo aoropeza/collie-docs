@@ -1,0 +1,48 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Deployment.puml
+
+LAYOUT_WITH_LEGEND()
+
+Deployment_Node(comp, "Customer's browser"){  
+  Container(broser, "Browser", "Google Chrome, Mozilla Firefox")
+}
+
+Deployment_Node(github, "Github", "Repositories"){
+  Container(repo, "API", "Repository")
+}
+
+Deployment_Node(aws, "AWS", "IaaS"){
+
+  Deployment_Node(FE, "Front End"){
+
+    Deployment_Node(cloundFront, "CloundFront"){
+      Container(cacheReactApp, "CDN", "Cached files")
+    }
+    Deployment_Node(s3, "S3"){
+      Container(s3ReactApp, "Bucket", "Static files", "html, js and css")
+    }
+
+    Rel(cacheReactApp, s3ReactApp, "Use", "Origin")
+  }
+
+  Deployment_Node(53, "Route 53"){
+    Container(domain, "Domain", "www.domain.com")
+  }
+  
+  Deployment_Node(develop, "Develop"){
+    Deployment_Node(ec2, "EC2"){
+      Container(ec2Jenkins, "Jenkins server", "Linux", "CI/CD")
+    }
+    Deployment_Node(codeBuild, "CodeBuild"){
+      Container(codeBuildAPI, "CodeBuild API", "Build, Test & Deploy", "npm install, npm test, npm lint, etc...")
+    }
+    Rel(ec2Jenkins, codeBuild, "Trigger", "Listen brach changes")
+  }
+
+  Rel(domain, cacheReactApp, "Route")
+  Rel(codeBuildAPI, s3ReactApp, "Push changes to origin Bucket")
+}
+
+Rel(broser, 53, "HTTPS", "Secure content")
+Rel(repo, ec2Jenkins, "Hooks")
+@enduml

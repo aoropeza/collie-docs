@@ -1,5 +1,7 @@
 **Level 3: Component diagram**
 
+**Technologies**: React, Apollo client and react95.
+
 **Scope**: A single container.
 
 **Primary elements**: Components within the container in scope.

@@ -1,0 +1,49 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Deployment.puml
+
+LAYOUT_WITH_LEGEND()
+
+
+Deployment_Node(mongoDbAtlas, "MongoDB Atlas", "IaaS"){
+  Container(mongoDBInstance, "MongoDB", "Instance")
+}
+
+Deployment_Node(github, "Github", "Repositories"){
+  Container(repo, "CLI", "Repository")
+}
+
+Deployment_Node(dockerRegistry, "Docker", "Public Registry"){
+  Container(dockerRegistryCLI, "CLI", "Container-Image")
+}
+
+Deployment_Node(aws, "AWS", "IaaS"){
+
+  Deployment_Node(Worker, "Worker"){
+    Deployment_Node(ecs, "ECS", "Elastic Container Service"){
+      Container(dockerCLI, "Docker", "CLI App")
+    }
+
+    Deployment_Node(cloudWatch, "CloudWatch"){
+      Container(triggerContainer, "Trigger/Cron", "Container will be trigger one time by day")
+    }
+    Rel(triggerContainer, dockerCLI, "Trigger", "Cron")
+  }
+
+  Deployment_Node(develop, "Develop"){
+    Deployment_Node(ec2, "EC2"){
+      Container(ec2Jenkins, "Jenkins server", "Linux", "CI/CD")
+    }
+    Deployment_Node(codeBuild, "CodeBuild"){
+      Container(codeBuildCLI, "CodeBuild CLI", "Build, Test & Deploy", "npm install, npm test, npm lint, etc...")
+    }
+  }
+
+  Rel(ec2Jenkins, codeBuild, "Trigger", "Listen brach changes")
+  
+}
+
+Rel(repo, ec2Jenkins, "Hooks")
+Rel(dockerCLI, mongoDBInstance, "Read & Write")
+Rel(codeBuildCLI, dockerRegistryCLI, "Push & create new container image")
+Rel(ecs, dockerRegistryCLI, "Pull lastest container image")
+@enduml

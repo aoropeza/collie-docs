@@ -1,5 +1,9 @@
 **Level 3: Component diagram**
 
+**Technologies**: Javascript and NodeJS as runtime environment.
+
+**Other main technologies**: Apollo server, graphql and serverless framework.
+
 **Scope**: A single container.
 
 **Primary elements**: Components within the container in scope.

@@ -19,6 +19,5 @@ System_Boundary(colliesystem, "Movies Collector System / Collie") {
     Rel(cli, cinepolis, "Uses", "Scrape HTML Pages")
     Rel(cli, cinemex, "Uses", "Scrape HTML Pages")
 }
-
 Rel(user, reactapp, "Uses")
 @enduml

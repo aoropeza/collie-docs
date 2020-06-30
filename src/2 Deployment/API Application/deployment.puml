@@ -1,0 +1,52 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Deployment.puml
+
+LAYOUT_WITH_LEGEND()
+
+Deployment_Node(comp, "Customer's browser", "Google Chrome, Mozilla Firefox"){  
+  Container(spa, "Single Page Application", "JavaScript and React", "Provides all of the functionality to customers via their web browser.")
+}
+
+Deployment_Node(mongoDbAtlas, "MongoDB Atlas", "IaaS"){
+  Container(mongoDBInstance, "MongoDB", "Instance")
+}
+
+Deployment_Node(github, "Github", "Repositories"){
+  Container(repo, "API", "Repository")
+}
+
+Deployment_Node(aws, "AWS", "IaaS"){
+
+  Deployment_Node(Backend, "Backend"){
+    Deployment_Node(apiGateway, "API Gateway"){
+      Container(apiGatewayCollieAPI, "API", "GraphQL")
+    }
+
+    Deployment_Node(lambda, "Lambda"){
+      Container(lambdaApolloFunction, "Javascript/NodeJS", "Function", "Apollo server")
+    }
+  }
+
+  Deployment_Node(53, "Route 53"){
+    Container(domain, "Domain", "www.domain.com")
+  }
+  
+  Deployment_Node(develop, "Develop"){
+    Deployment_Node(ec2, "EC2"){
+      Container(ec2Jenkins, "Jenkins server", "Linux", "CI/CD")
+    }
+    Deployment_Node(codeBuild, "CodeBuild"){
+      Container(codeBuildAPI, "CodeBuild API", "Build, Test & Deploy", "npm install, npm test, npm lint, etc...")
+    }
+  }
+
+  Rel(domain, apiGatewayCollieAPI, "Route")
+  Rel(apiGatewayCollieAPI, lambdaApolloFunction, "Invoke")
+  Rel(ec2Jenkins, codeBuild, "Trigger", "Listen brach changes")
+  Rel(codeBuildAPI, lambdaApolloFunction, "Serverless Framework Push Changes")
+}
+
+Rel(spa, 53, "HTTPS", "Secure content")
+Rel(lambdaApolloFunction, mongoDBInstance, "Read & Write")
+Rel(repo, ec2Jenkins, "Hooks")
+@enduml

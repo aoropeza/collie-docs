@@ -3,8 +3,8 @@
 
 LAYOUT_WITH_LEGEND()
 
-Person(user, "User", "Wants to find a good movie and some theater available to see it")
-System(collieSystem, "Movies Collector System / Collie", "Allows customer find a movie and some theater without navigate beteween different providers web pages")
+Person(user, "User", "Wants to find a movie and some theater available to see it")
+System(collieSystem, "Movies Collector System / Collie", "Allows customer find a movie and some theater without navigate beteween different web pages")
 System_Ext(cinepolis, "Cinepolis", "Provider's web page. Allows to the system scrape information about movies, locations and schedules")
 System_Ext(cinemex, "Cinemex", "Provider's web page. Allows to the system scrape information about movies, locations and schedules")
 
