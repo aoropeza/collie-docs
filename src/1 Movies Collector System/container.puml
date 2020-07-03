@@ -8,7 +8,7 @@ System_Ext(cinepolis, "Cinepolis", "Provider's web page. Allows to the system sc
 System_Ext(cinemex, "Cinemex", "Provider's web page. Allows to the system scrape information about movies, locations and schedules")
 System_Boundary(colliesystem, "Movies Collector System / Collie") {
     Container(reactapp, "Web Application", "Delivers the static content and the single page application")
-    Container(api, "API Application", "Javascript, NodeJS and Apollo Server", "Provides to the main system functionality via a GraphQL API")
+    Container(api, "API Application", "Javascript, NodeJS and Apollo Server", "Provides to web application all functionality through GraphQL API")
     Container(cli, "CLI Application", "Javascript, NodeJS and Puppeter", "Provides to the main database's system information through scrappe external webpages")
     Container(db, "Database", "No Relational Database Schema(MongoDb)", "Stores movies, theaters, brand information as date, time, name, title, logo and etc...")
 

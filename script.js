@@ -52,7 +52,8 @@ const pushChangeToRepo = async ({ repoUrl, projectName, branch }) => {
       name: "Alejandro Oropeza",
       email: "alexoropeza@gmail.com",
     },
-    message: "Updated README file",
+    message:
+      "[Automatic push by CI/CD] Updated README file with latest C4 model docs. ᕦ╏^^╏ᕤ",
   });
   let pushResult = await git.push({
     fs,

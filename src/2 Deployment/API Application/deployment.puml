@@ -42,7 +42,7 @@ Deployment_Node(aws, "AWS", "IaaS"){
 
   Rel(domain, apiGatewayCollieAPI, "Route")
   Rel(apiGatewayCollieAPI, lambdaApolloFunction, "Invoke")
-  Rel(ec2Jenkins, codeBuild, "Trigger", "Listen brach changes")
+  Rel(ec2Jenkins, codeBuild, "Trigger", "Listen branch changes")
   Rel(codeBuildAPI, lambdaApolloFunction, "Serverless Framework Push Changes")
 }
 

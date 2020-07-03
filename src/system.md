@@ -1,8 +1,10 @@
 > &#x1F4D7; Software Architecture based on [C4Model](https://c4model.com/)
 
+> I'm missing fourth layer XD
+
 **Level 1: System Context diagram**
 
-At México, CDMX there are two mainly branded offering theaters, [Cinepolis](https://cinepolis.com/) and [Cinemex](https://cinemex.com/), the system will collect information from both websites and put it together in a simple Web UI so the user don't have to look for the same movie into two different web pages.
+At México, CDMX there are two mainly companies offering theaters to see movies, [Cinepolis](https://cinepolis.com/) and [Cinemex](https://cinemex.com/), the system will collect information from both websites and put it together in a simple Web UI so the user don't have to look for the same movie into two different web pages.
 
 So Movies Collector System is intended to help anyone to find an scheduled movie and their details as date, time, location, distance, duration and of course which brand is offering it.
 

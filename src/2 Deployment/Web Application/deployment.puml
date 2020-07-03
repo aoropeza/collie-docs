@@ -36,7 +36,7 @@ Deployment_Node(aws, "AWS", "IaaS"){
     Deployment_Node(codeBuild, "CodeBuild"){
       Container(codeBuildAPI, "CodeBuild API", "Build, Test & Deploy", "npm install, npm test, npm lint, etc...")
     }
-    Rel(ec2Jenkins, codeBuild, "Trigger", "Listen brach changes")
+    Rel(ec2Jenkins, codeBuild, "Trigger", "Listen branch changes")
   }
 
   Rel(domain, cacheReactApp, "Route")

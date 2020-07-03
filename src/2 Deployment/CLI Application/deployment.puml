@@ -38,7 +38,7 @@ Deployment_Node(aws, "AWS", "IaaS"){
     }
   }
 
-  Rel(ec2Jenkins, codeBuild, "Trigger", "Listen brach changes")
+  Rel(ec2Jenkins, codeBuild, "Trigger", "Listen branch changes")
   
 }
 
