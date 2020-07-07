@@ -34,13 +34,13 @@ Deployment_Node(aws, "AWS", "IaaS"){
       Container(ec2Jenkins, "Jenkins server", "Linux", "CI/CD")
     }
     Deployment_Node(codeBuild, "CodeBuild"){
-      Container(codeBuildAPI, "CodeBuild API", "Build, Test & Deploy", "npm install, npm test, npm lint, etc...")
+      Container(codeBuildAPI, "CodeBuild API", "Build, Test & Deploy", "-npm install\n-npm test\n-npm lint\n-serverless deploy -s stage")
     }
     Rel(ec2Jenkins, codeBuild, "Trigger", "Listen branch changes")
   }
 
   Rel(domain, cacheReactApp, "Route")
-  Rel(codeBuildAPI, s3ReactApp, "Push changes to origin Bucket")
+  Rel(codeBuildAPI, s3ReactApp, "Serverless Framework: Create AWS Resources & Push New Code")
 }
 
 Rel(broser, 53, "HTTPS", "Secure content")
